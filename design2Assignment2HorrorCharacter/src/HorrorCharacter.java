@@ -1,5 +1,11 @@
 import java.util.ArrayList;
 import java.util.Random;
+
+/**
+ * Base horror character class
+ * including attributes such as health and power
+ * including methods to attack a HorrorCharacter and to flee from battle
+ */
 public abstract class HorrorCharacter
 {
     private String name;
@@ -9,17 +15,6 @@ public abstract class HorrorCharacter
     private int power;
     private boolean canAttack;
     private ArrayList<Vulnerability> vulnerabilities;
-
-    public HorrorCharacter()
-    {
-        name = "";
-        curHealth = 0;
-        maxHealth = 0;
-        maxPower = 0;
-        power = 0;
-        canAttack = true;
-        vulnerabilities = new ArrayList<>();
-    }
 
     public HorrorCharacter(String initName, int initHealth, ArrayList<Vulnerability> initVulnerabilities, int initMaxPower)
     {
@@ -32,6 +27,11 @@ public abstract class HorrorCharacter
         canAttack = true;
         vulnerabilities = initVulnerabilities;
     }
+
+    /**
+     * base attack method that depletes target's health
+     * @param target another HorrorCharacter
+     */
     public void attack(HorrorCharacter target)
     {
         if (target.canAttack)
@@ -40,6 +40,9 @@ public abstract class HorrorCharacter
         }
     }
 
+    /**
+     * base flee method to make the object not attackable
+     */
     public void flee()
     {
         canAttack = false;

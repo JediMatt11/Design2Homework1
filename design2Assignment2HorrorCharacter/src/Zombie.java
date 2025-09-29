@@ -1,5 +1,8 @@
 import java.util.ArrayList;
 
+/**
+ * Child class of HorrorCharacter that has different behaviour during daytime or no daytime
+ */
 public class Zombie extends HorrorCharacter
 {
     private boolean isDaytime;
@@ -9,6 +12,11 @@ public class Zombie extends HorrorCharacter
         isDaytime = initIsDaytime;
     }
 
+    /**
+     * if the target horror character has not fled, calculates base power to be used in attack damage calculations
+     * if the target has a vulnerability to Sword or holyWater, damage is increased
+     * @param target another HorrorCharacter
+     */
     @Override
     public void attack(HorrorCharacter target)
     {
@@ -18,6 +26,10 @@ public class Zombie extends HorrorCharacter
         }
     }
 
+    /**
+     * if isDaytime is true, the zombie is allowed to flee when this is called
+     * it calls the parent HorrorCharacter's flee method, making this object not attackable
+     */
     @Override
     public void flee()
     {
@@ -27,6 +39,10 @@ public class Zombie extends HorrorCharacter
         }
     }
 
+    /**
+     * Gives public access to the object's vulnerabilities
+     * @return ArrayList<Vulnerability>
+     */
     public static ArrayList<Vulnerability> accessZombieVulnerabilities()
     {
         ArrayList<Vulnerability> accessible = new ArrayList<>();
